@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RegistrationResponseDTO
+    public class RegisterationResponseDTO
     {
-        public bool IsRegistrationSuccessfull{ get; set; }
+        public bool IsRegisterationSuccessful{ get; set; }
         public IEnumerable<string> Errors { get; set; }
     }
 }

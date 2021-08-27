@@ -10,11 +10,11 @@ namespace Models
     public class HotelRoomDTO
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="please enter the Room name.")]
+        [Required(ErrorMessage = "please enter the Room name.")]
         public string Name { get; set; }
         [Required]
         public int Occupancy { get; set; }
-        [Range(1,3000,ErrorMessage="Regular rate must be between 1 and 3000")]
+        [Range(1, 3000, ErrorMessage = "Regular rate must be between 1 and 3000")]
         public double RegularRate { get; set; }
         public string Details { get; set; }
         public string SqFt { get; set; }
@@ -22,6 +22,7 @@ namespace Models
         public double TotalAmount { get; set; }
         public virtual ICollection<HotelRoomImageDTO> HotelRoomImages { get; set; }
         public List<string> ImageUrls { get; set; }
+        public bool IsBooked {get;set;}
 
     }
 }

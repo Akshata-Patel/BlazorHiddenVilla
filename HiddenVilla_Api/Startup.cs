@@ -22,6 +22,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using Stripe;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace HiddenVilla_Api
 {
@@ -45,6 +47,8 @@ namespace HiddenVilla_Api
 
             var appSettingsSection = Configuration.GetSection("APISettings");
             services.Configure<APISettings>(appSettingsSection);
+
+            services.Configure<MailJetSettings>(Configuration.GetSection("MailJetSettings"));
 
             var apiSettings = appSettingsSection.Get<APISettings>();
             var key = Encoding.ASCII.GetBytes(apiSettings.SecretKey);
@@ -78,6 +82,7 @@ namespace HiddenVilla_Api
             services.AddScoped<IAmenityRepository, AmenityRepository>();
             services.AddScoped<IRoomOrderDetailsRepository, RoomOrderDetailsRepository>();
             services.AddScoped<IHotelImagesRepository, HotelImagesRepository>();
+            services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddCors(o => o.AddPolicy("HiddenVilla",builder => {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -118,6 +123,7 @@ namespace HiddenVilla_Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["ApiKey"];
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

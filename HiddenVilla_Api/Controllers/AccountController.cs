@@ -58,10 +58,10 @@ namespace HiddenVilla_Api.Controllers
             if(!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return BadRequest(new RegistrationResponseDTO
+                return BadRequest(new RegisterationResponseDTO
                 {
                     Errors = errors,
-                    IsRegistrationSuccessfull = false
+                    IsRegisterationSuccessful = false
                 });
             }
 
@@ -69,10 +69,10 @@ namespace HiddenVilla_Api.Controllers
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return BadRequest(new RegistrationResponseDTO
+                return BadRequest(new RegisterationResponseDTO
                 {
                     Errors = errors,
-                    IsRegistrationSuccessfull = false
+                    IsRegisterationSuccessful = false
                 });
             }
             return StatusCode(201);
@@ -91,7 +91,7 @@ namespace HiddenVilla_Api.Controllers
                 {
                     return Unauthorized(new AuthenticationResponseDTO
                     {
-                        IsAuthSuccessfull = false,
+                        IsAuthSuccessful = false,
                         ErrorMessage = "Invalid Authentication"
                     });
                 }
@@ -112,7 +112,7 @@ namespace HiddenVilla_Api.Controllers
 
                 return Ok(new AuthenticationResponseDTO
                 {
-                    IsAuthSuccessfull = true,
+                    IsAuthSuccessful = true,
                     Token = token,
                     userDTO = new UserDTO
                     {
@@ -127,7 +127,7 @@ namespace HiddenVilla_Api.Controllers
             {
                 return Unauthorized(new AuthenticationResponseDTO
                 {
-                    IsAuthSuccessfull = false,
+                    IsAuthSuccessful = false,
                     ErrorMessage = "Invalid Authentication"
                 });
             }

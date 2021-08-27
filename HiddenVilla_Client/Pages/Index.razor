@@ -13,6 +13,14 @@
 }
 else
 {
+    <AuthorizeView>
+        <Authorized>
+            <p>Welcome, @context.User.Identity.Name</p>
+        </Authorized>
+        <NotAuthorized>
+            <p>Not signed in!</p>
+        </NotAuthorized>
+    </AuthorizeView>
     <div class="row p-0 m-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -71,6 +79,7 @@ else
         </div>
     </EditForm>
     <hr />
+    <link rel="stylesheet" href="css/font-awesome/css/all.min.css" />
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
@@ -83,6 +92,7 @@ else
             {
                 <div class="col-md-4 col-6 p-4">
                     <div style="border:1px solid #d5d5d5; border-radius:20px;">
+
                         <div class="row col-4 offset-4 p-4">
                             <i class="@amenity.IconStyle fa-4x"></i>
                         </div>
